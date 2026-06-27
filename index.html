@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PRETZEL — 영어회화 동아리 3기</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#3d3dcc;color:#fff;font-family:'Noto Sans KR',-apple-system,sans-serif;line-height:1.7}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:5rem 1.5rem 4rem;position:relative;overflow:hidden;background:#3d3dcc}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 30%,rgba(255,255,255,0.06) 0%,transparent 60%);pointer-events:none}
+.hero-badge{font-size:0.72rem;letter-spacing:.18em;text-transform:uppercase;color:#ff3333;font-weight:700;margin-bottom:1.25rem;border:1.5px solid #ff3333;padding:5px 14px;border-radius:4px;display:inline-block}
+.hero h1{font-size:clamp(4.5rem,16vw,11rem);font-weight:900;letter-spacing:-0.04em;color:#ff3333;line-height:0.9;margin-bottom:1rem;font-style:italic}
+.hero-sub{font-size:1rem;color:rgba(255,255,255,0.7);margin-bottom:0.5rem;letter-spacing:.04em}
+.hero-slogan{font-size:1.1rem;color:#fff;font-weight:500;margin-bottom:3rem;max-width:480px;line-height:1.8}
+.hero-poster{width:100%;max-width:340px;border-radius:20px;margin-bottom:3rem;box-shadow:0 16px 60px rgba(0,0,0,0.4)}
+.cta{display:inline-block;padding:14px 44px;background:#ff3333;color:#fff;border-radius:4px;font-size:16px;font-weight:700;text-decoration:none;letter-spacing:.04em;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 24px rgba(255,51,51,0.5)}
+.cta:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,51,51,0.6)}
+
+/* SECTIONS */
+.section{max-width:780px;margin:0 auto;padding:5rem 1.5rem}
+.section.light{background:#fff;color:#1a1a1a;max-width:100%}
+.section.light .inner{max-width:780px;margin:0 auto;padding:5rem 1.5rem}
+.lbl{font-size:0.68rem;letter-spacing:.16em;text-transform:uppercase;color:#ff3333;margin-bottom:1.25rem;font-weight:700;display:flex;align-items:center;gap:8px}
+.lbl::before{content:'';display:block;width:22px;height:2px;background:#ff3333}
+.lbl.dark{color:#ff3333}
+.desc{font-size:1.05rem;line-height:2;opacity:0.88}
+.desc.dark{color:#444}
+hr.divider{border:none;border-top:0.5px solid rgba(255,255,255,0.12);max-width:780px;margin:0 auto}
+hr.divider.light{border-top:0.5px solid #e5e5e5}
+
+/* WHY 카드 */
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:1.5rem}
+.why-card{background:rgba(255,255,255,0.07);border:0.5px solid rgba(255,255,255,0.15);border-radius:16px;padding:1.5rem;backdrop-filter:blur(4px)}
+.why-card .icon{font-size:1.8rem;margin-bottom:0.75rem}
+.why-card h3{font-size:0.95rem;font-weight:700;color:#fff;margin-bottom:0.4rem}
+.why-card p{font-size:0.85rem;color:rgba(255,255,255,0.65);line-height:1.7}
+
+/* 커리큘럼 */
+.curriculum{display:flex;flex-direction:column;gap:10px;margin-top:1.5rem}
+.curr-item{display:flex;align-items:flex-start;gap:14px;background:rgba(255,255,255,0.06);border:0.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:1.1rem 1.25rem;transition:background .15s}
+.curr-item:hover{background:rgba(255,255,255,0.1)}
+.curr-num{width:34px;height:34px;border-radius:4px;background:#ff3333;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;letter-spacing:.04em}
+.curr-text h4{font-size:0.95rem;font-weight:700;color:#fff;margin-bottom:3px}
+.curr-text p{font-size:0.82rem;color:rgba(255,255,255,0.6)}
+.curr-text .eng{font-size:0.78rem;color:#ff9999;font-style:italic;margin-top:3px}
+
+/* 모집 정보 */
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:1.5rem}
+.info-card{background:rgba(255,255,255,0.07);border:0.5px solid rgba(255,255,255,0.15);border-radius:14px;padding:1.25rem 1.5rem}
+.info-card .clbl{font-size:10px;color:rgba(255,255,255,0.5);margin-bottom:6px;text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+.info-card .cval{font-size:1rem;font-weight:700;color:#fff;line-height:1.4}
+
+/* 태그 */
+.tag{display:inline-block;padding:5px 14px;border-radius:4px;background:rgba(255,51,51,0.15);color:#ff9999;font-size:13px;margin:3px;border:1px solid rgba(255,51,51,0.3)}
+
+/* 갤러리 */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:1.5rem}
+.gallery-grid .photo{aspect-ratio:4/3;border-radius:10px;overflow:hidden;border:0.5px solid rgba(255,255,255,0.1)}
+.gallery-grid .photo img{width:100%;height:100%;object-fit:cover;filter:brightness(0.95)}
+
+/* APPLY */
+.apply{text-align:center;padding:6rem 1.5rem;background:#1a1a99}
+.apply h2{font-size:2.2rem;font-weight:900;letter-spacing:-.03em;margin-bottom:0.75rem;color:#fff}
+.apply p{color:rgba(255,255,255,0.65);margin-bottom:2rem;font-size:1rem;line-height:1.8}
+.btn-outline{display:inline-block;margin-top:12px;padding:12px 34px;background:transparent;color:#ff3333;border:2px solid #ff3333;border-radius:4px;font-size:15px;text-decoration:none;font-family:inherit;font-weight:700;letter-spacing:.04em;transition:all .2s}
+.btn-outline:hover{background:#ff3333;color:#fff}
+footer{text-align:center;padding:2rem;font-size:11px;color:rgba(255,255,255,0.3);background:#1a1a99}
+
+@media(max-width:600px){
+  .hero h1{font-size:5.5rem}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .info-grid{grid-template-columns:1fr 1fr}
+  .why-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🥨 3기 모집 중 · 2026 JUL</div>
+  <h1>PRETZEL</h1>
+  <p class="hero-sub">Pro처럼 말하지 않아도 괜찮아 🫶</p>
+  <p class="hero-slogan">틀려도 괜찮아, Challenge하는 순간<br>영어는 내 것이 된다 👊</p>
+  <img src="posters/poster_1.jpg" alt="프레챌 포스터" class="hero-poster">
+  <a href="#apply" class="cta">3기 지금 지원하기 →</a>
+</section>
+
+<!-- 소개 -->
+<section class="section">
+  <div class="lbl">About PRETZEL</div>
+  <p class="desc">
+    프레챌은 <strong style="color:#fff">영화·드라마·슬랭</strong>으로 실제 원어민이 쓰는 영어를 익히는 영어회화 동아리예요.<br><br>
+    교과서엔 없는 진짜 표현, 쉐도잉으로 발음까지 — 틀려도 뱉어보는 용기가 실력이 됩니다.<br>
+    마지막엔 이태원에서 외국인과 프리토킹까지! 🎉
+  </p>
+</section>
+
+<hr class="divider">
+
+<!-- WHY -->
+<section class="section">
+  <div class="lbl">Why PRETZEL</div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="icon">🎬</div>
+      <h3>영화로 배우는 진짜 영어</h3>
+      <p>Fear Street, 미니언즈 등 실제 영화 속 표현 하나, 단어 하나 완전 정복. 자막 없이 이해되는 그날까지!</p>
+    </div>
+    <div class="why-card">
+      <div class="icon">🤙</div>
+      <h3>슬랭 & 욕설도 배워요</h3>
+      <p>교과서엔 절대 없는 원어민이 진짜 쓰는 말들. 알아야 안 당하고, 알면 더 웃길 수 있어요.</p>
+    </div>
+    <div class="why-card">
+      <div class="icon">🎵</div>
+      <h3>쉐도잉으로 발음 교정</h3>
+      <p>좋아하는 노래로 발음·리듬·감까지 한번에. 입근육이 기억하는 영어를 만들어요.</p>
+    </div>
+    <div class="why-card">
+      <div class="icon">🌍</div>
+      <h3>이태원 프리토킹 파티</h3>
+      <p>마지막 회차는 이태원에서 실제 외국인과 대화! 배운 걸 써먹는 리얼 체험.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 커리큘럼 -->
+<section class="section">
+  <div class="lbl">Curriculum</div>
+  <p class="desc" style="margin-bottom:0.5rem">매 회차 영화·콘텐츠 기반으로, 표현 하나씩 제대로 뜯어봐요.</p>
+  <div class="curriculum">
+    <div class="curr-item">
+      <div class="curr-num">OT</div>
+      <div class="curr-text">
+        <h4>🥨 우리, 일단 통하자</h4>
+        <p>자기소개 + 내가 하고 싶은 활동 & 프레챌 통해 얻고 싶은 것 공유</p>
+        <div class="eng">"Nice to meet y'all — let's vibe!"</div>
+      </div>
+    </div>
+    <div class="curr-item">
+      <div class="curr-num">1차</div>
+      <div class="curr-text">
+        <h4>🌍 인종차별에서 살아남기</h4>
+        <p>Fear Street Part 1: 1994 — 리얼 생존 회화, 원어민처럼 반응하는 법</p>
+        <div class="eng">"That's not cool." / "Back off!"</div>
+      </div>
+    </div>
+    <div class="curr-item">
+      <div class="curr-num">2차</div>
+      <div class="curr-text">
+        <h4>🤙 슬랭야호</h4>
+        <p>교과서엔 없는, 원어민이 진짜 쓰는 말들 완전 정복 (a.k.a 욕설 배우기)</p>
+        <div class="eng">"No cap." / "It's giving..." / "Slay!"</div>
+      </div>
+    </div>
+    <div class="curr-item">
+      <div class="curr-num">3차</div>
+      <div class="curr-text">
+        <h4>🍌 미니언즈의 영어마을</h4>
+        <p>못해도 OK, 틀려도 OK — 일단 뱉어보는 스피킹 탈출 세션</p>
+        <div class="eng">"Just say it out loud — imperfectly!"</div>
+      </div>
+    </div>
+    <div class="curr-item">
+      <div class="curr-num">4차</div>
+      <div class="curr-text">
+        <h4>🎵 What's a Girl to Do</h4>
+        <p>쉐도잉으로 발음·리듬·감까지 한번에. 노래로 입근육 만들기</p>
+        <div class="eng">Shadowing — sound like a native!</div>
+      </div>
+    </div>
+    <div class="curr-item">
+      <div class="curr-num" style="background:#ffd700;color:#1a1a1a">🎉</div>
+      <div class="curr-text">
+        <h4>💌 찐친 만들기 in 이태원</h4>
+        <p>이태원에서 외국인과 프리토킹! Party to night — 배운 영어를 실전에서</p>
+        <div class="eng">"Hey, can I talk to you for a sec?"</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 모집 정보 -->
+<section class="section">
+  <div class="lbl">모집 정보</div>
+  <div class="info-grid">
+    <div class="info-card"><div class="clbl">모집 기간</div><div class="cval">2026.06.15 ~ 06.30</div></div>
+    <div class="info-card"><div class="clbl">활동 기간</div><div class="cval">2026년 7월~ 주 1회</div></div>
+    <div class="info-card"><div class="clbl">활동 장소</div><div class="cval">노량진·홍대·신촌 스터디카페</div></div>
+    <div class="info-card"><div class="clbl">회비</div><div class="cval">월 2만원 (투명 공개)</div></div>
+  </div>
+  <div style="margin-top:1.75rem">
+    <div class="lbl">이런 분 환영해요</div>
+    <div>
+      <span class="tag">영어에 도전하고 싶은 00~07년생</span>
+      <span class="tag">재학생 · 휴학생 모두 환영</span>
+      <span class="tag">알파벳만 알아도 OK</span>
+      <span class="tag">실력 완전 무관</span>
+      <span class="tag">틀리는 게 무서운 분</span>
+    </div>
+  </div>
+  <div style="margin-top:1.5rem;background:rgba(255,255,255,0.06);border-radius:12px;padding:1.1rem 1.4rem;font-size:0.88rem;color:rgba(255,255,255,0.6);line-height:1.8">
+    📋 <strong style="color:#fff">모집 절차</strong> — 구글폼 지원서 제출 → 검토 후 개별 전화 연락으로 합격 발표<br>
+    👤 <strong style="color:#fff">운영진</strong> — 중앙대학교 최연정 · 010-3901-4960<br>
+    ⚠️ 본 동아리는 대학생 자치 단체이며, 정치·종교·시민단체와 전혀 무관합니다.
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- 활동 사진 -->
+<section class="section">
+  <div class="lbl">활동 사진</div>
+  <div class="gallery-grid">
+    <div class="photo"><img src="photos/photo_1.jpg" alt="활동사진"></div>
+    <div class="photo"><img src="photos/photo_2.jpg" alt="활동사진"></div>
+    <div class="photo"><img src="photos/photo_3.jpg" alt="활동사진"></div>
+    <div class="photo"><img src="photos/photo_4.jpg" alt="활동사진"></div>
+    <div class="photo"><img src="photos/photo_5.jpg" alt="활동사진"></div>
+    <div class="photo"><img src="photos/photo_6.jpg" alt="활동사진"></div>
+    <div class="photo"><img src="photos/photo_7.jpg" alt="활동사진"></div>
+    <div class="photo"><img src="photos/photo_8.jpg" alt="활동사진"></div>
+  </div>
+</section>
+
+<!-- APPLY -->
+<section class="apply" id="apply">
+  <p style="font-size:0.75rem;letter-spacing:.16em;text-transform:uppercase;color:#ff3333;font-weight:700;margin-bottom:1rem">🥨 JOIN PRETZEL 3RD</p>
+  <h2>Ready? Challenge!</h2>
+  <p>틀려도 괜찮아 — Challenge하는 순간 영어는 내 것이 된다 👊<br>2026.06.15 ~ 06.30 모집 중 · 00~07년생 대학생</p>
+  <a href="https://forms.gle/" class="cta">지원폼 바로가기 →</a>
+  <br>
+  <a href="tel:010-3901-4960" class="btn-outline">운영진에게 문의하기</a>
+</section>
+
+<footer>© PRETZEL 영어회화 동아리 3기 · 대학생 자치 운영 · 정치·종교·시민단체 무관</footer>
+
+</body>
+</html>
